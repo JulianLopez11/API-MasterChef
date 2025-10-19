@@ -46,6 +46,11 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+
 		<dependency>
 			<groupId>jakarta.platform</groupId>
 			<artifactId>jakarta.jakartaee-api</artifactId>
@@ -66,11 +71,7 @@
 			<version>2.0.1</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.6.0</version>
-		</dependency>
+
 
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
@@ -173,7 +174,7 @@
                                 <rule>
                                     <element>CLASS</element>
                                     <excludes>
-                                    <exclude>edu/dosw/sirha/TheBoysApplication</exclude>
+                                    <exclude>edu/dosw/sirha/MasterChefApplication</exclude>
                                     </excludes>
                                 </rule>
                                 <rule>
