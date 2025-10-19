@@ -44,7 +44,7 @@ public class RecipeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdRecipe);
     }
 
-    @GetMapping
+    @GetMapping("/recipes")
     public List<RecipeResponseDTO> getAllRecipes() {
         return recipeService.getAllRecipes();
     }
@@ -74,7 +74,7 @@ public class RecipeController {
         return ResponseEntity.ok(recipeService.getRecipesBySeason(season));
     }
 
-    @GetMapping("/recipt/{ingredient}")
+    @GetMapping("/recip/{ingredient}")
     public ResponseEntity<List<RecipeResponseDTO>> getRecipesByIngredient(@PathVariable String ingredient) {
         return ResponseEntity.ok(recipeService.getRecipesByIngredient(ingredient));
     }
