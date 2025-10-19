@@ -74,7 +74,7 @@ public class RecipeController {
         return ResponseEntity.ok(recipeService.getRecipesBySeason(season));
     }
 
-    @GetMapping("/recip/{ingredient}")
+    @GetMapping("/recipe/{ingredient}")
     public ResponseEntity<List<RecipeResponseDTO>> getRecipesByIngredient(@PathVariable String ingredient) {
         return ResponseEntity.ok(recipeService.getRecipesByIngredient(ingredient));
     }
