@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class RecipeResponseDTO {
 
-    @Schema(description = "Unique identifier of the recipe", example = "6713b41d4e56c9a8e2a7f1a0")
+    @Schema(description = "Unique identifier of the recipe", example = "01")
     private String id;
 
     @Schema(description = "Title of the recipe", example = "Spaghetti Carbonara")
@@ -26,13 +26,13 @@ public class RecipeResponseDTO {
     private List<String> ingredients;
 
     @Schema(description = "Step-by-step instructions to prepare the recipe",
-            example = "[\"Boil the spaghetti.\", \"Cook the pancetta.\", \"Mix eggs and cheese.\", \"Combine all ingredients.\"]")
+            example = "[\"COOK THE MEAT.\", \"CUT THE VEGETABLES.\", \"MIX EVERYTHING.\"]")
     private List<String> steps;
 
     @Schema(description = "Information about the chef who created the recipe")
     private ChefResponseDTO chef;
 
-    @Schema(description = "Type of chef who created the recipe", example = "PARTICIPANT")
+    @Schema(description = "Type of chef who created the recipe", example = "VIEWER")
     private ChefType chefType;
 
     @Schema(description = "Season number if the chef is a participant", example = "1")

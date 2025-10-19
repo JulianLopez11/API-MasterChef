@@ -24,6 +24,7 @@ public class ChefRequestDTO {
     @Schema(description = "name of the chefs", example = "Jorge Raush")
     private String name;
     
+    @Schema(description = "Type of chef who created the recipe", example = "COMPETITOR")
     private ChefType type;
     
 }

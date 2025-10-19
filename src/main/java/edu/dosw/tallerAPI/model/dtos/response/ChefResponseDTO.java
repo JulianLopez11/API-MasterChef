@@ -15,9 +15,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @AllArgsConstructor
 public class ChefResponseDTO {
 
-    @Schema(description = "name of the chefs", example = "Jorge Raush")
+    @Schema(description = "name of the chefs", example = "Gordon Ramsay")
     private String name;
     
+     @Schema(description = "Type of chef who created the recipe", example = "JURY")
     private ChefType type;
     
 }
