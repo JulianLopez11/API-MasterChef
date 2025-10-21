@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 public class Chef {
     @Id
-    private ObjectId id;
+    private String id;
     private String name;
     private ChefType type;
 

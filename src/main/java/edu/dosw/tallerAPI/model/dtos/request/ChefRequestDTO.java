@@ -19,7 +19,7 @@ public class ChefRequestDTO {
     
     @Schema(description = "Identifier Of Chefs", example = "1")
     @NotNull(message = "The id cannot be null")
-    private ObjectId id;
+    private String id;
 
     @Schema(description = "name of the chefs", example = "Jorge Raush")
     private String name;
