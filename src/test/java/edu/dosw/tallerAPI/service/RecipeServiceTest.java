@@ -88,4 +88,30 @@ public class RecipeServiceTest {
     assertEquals(expectedDto.getId(), result.getId());
     assertEquals(expectedDto.getTitle(), result.getTitle());
     }
+
+
+    @Test
+    void shouldSearchRecipeByIngredient(){
+        String ingredient = "Water";
+        Recipe recipe = Recipe.builder()
+            .id("1")
+            .title("Chocolate")
+            .ingredients(List.of(ingredient, "Milk", "Chocolate"))
+            .steps(List.of("Boil water", "Add milk","Add chocolate","wait"))
+            .build();
+
+        when(recipeRepository.findByIngredients(ingredient)).thenReturn(List.of(recipe));
+        when(recipeMapper.toDTO(recipe)).thenReturn(RecipeResponseDTO.builder().id(recipe.getId()).title(recipe.getTitle()).build());
+
+        List<RecipeResponseDTO> result = recipeService.getRecipesByIngredient(ingredient);
+
+        assertNotNull(result);
+        assertEquals(recipe.getId(), result.get(0).getId());
+        assertEquals(recipe.getTitle(), result.get(0).getTitle());
+    }
+
+    @Test
+    void shouldThrowErrorWhenRecipeNotFound(){
+
+    }
 }
