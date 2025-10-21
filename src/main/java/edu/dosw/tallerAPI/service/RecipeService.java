@@ -25,7 +25,7 @@ public class RecipeService {
     private final RecipeMapper recipeMapper;
 
     /**
-     * Creates a new recipe associated with a specific {@link ChefType}.
+     * Creates a new recipe associated with a specific 
      * @param dto the data transfer object containing recipe details.
      * @param chefType the type of chef creating the recipe (VIEWER, COMPETITOR, JURY).
      * @return the created recipe as a recipe
@@ -53,7 +53,6 @@ public class RecipeService {
 
     /**
      * Retrieves a recipe by its unique ID.
-     *
      * @param id the ID of the recipe.
      * @return a recipe representing the found recipe.
      * @throws ResourceNotFoundException 
