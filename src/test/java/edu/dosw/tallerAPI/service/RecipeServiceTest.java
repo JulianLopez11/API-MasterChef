@@ -2,9 +2,12 @@ package edu.dosw.tallerAPI.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import edu.dosw.tallerAPI.exception.ResourceNotFoundException;
 import edu.dosw.tallerAPI.mapper.RecipeMapper;
 import edu.dosw.tallerAPI.model.entity.Chef;
 import edu.dosw.tallerAPI.model.dtos.request.RecipeRequestDTO;
@@ -30,6 +34,8 @@ public class RecipeServiceTest {
 
     @InjectMocks
     private RecipeService recipeService;
+
+    RecipeResponseDTO newRecipe;
     
     @Test
     void shouldCreateRecipe(){
@@ -112,6 +118,24 @@ public class RecipeServiceTest {
 
     @Test
     void shouldThrowErrorWhenRecipeNotFound(){
+    Chef chefRequest = Chef.builder()
+        .id("777")
+        .name("Julian")
+        .type(ChefType.JURY)
+        .build();
 
+    RecipeRequestDTO recipeDTO = RecipeRequestDTO.builder()
+        .id("777")
+        .title("Pasta")
+        .ingredients(List.of("Flour", "Eggs", "Salt"))
+        .steps(List.of("Boil water", "Cook pasta","Add sauce"))
+        .chef(chefRequest)
+        .chefType(ChefType.COMPETITOR)
+        .build();
+
+    when(recipeRepository.findById("777")).thenReturn(Optional.empty());
+
+    assertThrows(ResourceNotFoundException.class, () -> recipeService.updateRecipe("777", recipeDTO));
+    verify(recipeRepository).findById("777");
     }
 }
