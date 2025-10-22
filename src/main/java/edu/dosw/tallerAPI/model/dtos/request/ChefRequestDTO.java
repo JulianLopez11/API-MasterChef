@@ -1,7 +1,5 @@
 package edu.dosw.tallerAPI.model.dtos.request;
 
-import org.bson.types.ObjectId;
-
 import edu.dosw.tallerAPI.model.entity.enums.ChefType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
@@ -23,8 +21,9 @@ public class ChefRequestDTO {
 
     @Schema(description = "name of the chefs", example = "Jorge Raush")
     private String name;
+
+    @Schema(description = "type of the chef", example = "Viewer")
+    private ChefType chefType;
     
-    @Schema(description = "Type of chef who created the recipe", example = "COMPETITOR")
-    private ChefType type;
     
 }

@@ -3,7 +3,6 @@ package edu.dosw.tallerAPI.model.dtos.request;
 import java.util.List;
 
 import edu.dosw.tallerAPI.model.entity.Chef;
-import edu.dosw.tallerAPI.model.entity.enums.ChefType;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
@@ -36,8 +35,6 @@ public class RecipeRequestDTO {
     @Schema(description = "Information about the chef who created the recipe")
     private Chef chef;
 
-    @Schema(description = "Type of chef who created the recipe", example = "JURY")
-    private ChefType chefType;
 
     @Schema(description = "Season number if the chef is a participant", example = "1")
     private int season;

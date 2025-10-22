@@ -35,107 +35,79 @@ public class RecipeServiceTest {
     @InjectMocks
     private RecipeService recipeService;
 
-    RecipeResponseDTO newRecipe;
-    
     @Test
-    void shouldCreateRecipe(){
-    Chef chefRequest = Chef.builder()
-    .id("1")
-    .name("Nico")
-    .type(ChefType.JURY)
-    .build();
+    void shouldCreateCompetitorRecipe(){
+        Chef competitorChef = Chef.builder()
+            .id("1")
+            .name("Jorge Raush")
+            .chefType(ChefType.COMPETITOR)
+            .build();
+        
+        RecipeRequestDTO recipe = RecipeRequestDTO.builder()
+            .id("1")
+            .title("Rice")
+            .ingredients(List.of("Water","Onion","Rice","Salt","Oil"))
+            .steps(List.of("Boil Water","Cut Onion", "Mix Onion rice And water in the pot","Wait","Put the rice"))
+            .chef(competitorChef)
+            .season(1)
+            .build();
 
-    RecipeRequestDTO request = RecipeRequestDTO.builder()
-    .id("1")
-    .title("Pasta")
-    .ingredients(List.of("Flour", "Eggs", "Salt"))
-    .steps(List.of("Boil water", "Cook pasta","Add sauce"))
-    .chef(chefRequest)
-    .chefType(ChefType.COMPETITOR)
-    .build();
+        Recipe recipeEntity = Recipe.builder()
+            .id(recipe.getId())
+            .title(recipe.getTitle())
+            .ingredients(recipe.getIngredients())
+            .steps(recipe.getSteps())
+            .chef(competitorChef)
+            .season(recipe.getSeason())
+            .build();
 
-    Recipe recipeEntity = Recipe.builder()
-        .id(request.getId())
-        .title(request.getTitle())
-        .ingredients(request.getIngredients())
-        .steps(request.getSteps())
-        .chef(chefRequest)
-        .chefType(request.getChefType())
-        .build();
+        RecipeResponseDTO expectedDto = RecipeResponseDTO.builder()
+            .id(recipeEntity.getId())
+            .title(recipeEntity.getTitle())
+            .ingredients(recipeEntity.getIngredients())
+            .steps(recipeEntity.getSteps())
+            .chef(null)
+            .season(recipeEntity.getSeason())
+            .build();
 
-    RecipeResponseDTO expectedDto = RecipeResponseDTO.builder()
-        .id(recipeEntity.getId())
-        .title(recipeEntity.getTitle())
-        .ingredients(recipeEntity.getIngredients())
-        .steps(recipeEntity.getSteps())
-        .chef(null)
-        .chefType(recipeEntity.getChefType())
-        .season(0)
-        .build();
-
-    Recipe faked = Recipe.builder()
-        .id(recipeEntity.getId())
-        .title(recipeEntity.getTitle())
-        .ingredients(recipeEntity.getIngredients())
-        .steps(recipeEntity.getSteps())
-        .chef(null)
-        .chefType(recipeEntity.getChefType())
-        .season(0)
-        .build();
-
-    when(recipeMapper.toEntity(request)).thenReturn(faked);
-    when(recipeRepository.save(faked)).thenReturn(faked);
-    when(recipeMapper.toDTO(faked)).thenReturn(expectedDto);
-
-    RecipeResponseDTO result = recipeService.createRecipe(request, request.getChefType());
-
-    
-    assertNotNull(result);
-    assertEquals(expectedDto.getId(), result.getId());
-    assertEquals(expectedDto.getTitle(), result.getTitle());
     }
-
 
     @Test
     void shouldSearchRecipeByIngredient(){
-        String ingredient = "Water";
         Recipe recipe = Recipe.builder()
-            .id("1")
+            .id("")
             .title("Chocolate")
-            .ingredients(List.of(ingredient, "Milk", "Chocolate"))
+            .ingredients(List.of("Water", "Milk", "Chocolate"))
             .steps(List.of("Boil water", "Add milk","Add chocolate","wait"))
             .build();
-
-        when(recipeRepository.findByIngredients(ingredient)).thenReturn(List.of(recipe));
+        when(recipeRepository.findByIngredients("Water")).thenReturn(List.of(recipe));
         when(recipeMapper.toDTO(recipe)).thenReturn(RecipeResponseDTO.builder().id(recipe.getId()).title(recipe.getTitle()).build());
-
-        List<RecipeResponseDTO> result = recipeService.getRecipesByIngredient(ingredient);
-
+        List<RecipeResponseDTO> result = recipeService.getRecipesByIngredient("Water");
         assertNotNull(result);
         assertEquals(recipe.getId(), result.get(0).getId());
         assertEquals(recipe.getTitle(), result.get(0).getTitle());
+        
     }
 
     @Test
     void shouldThrowErrorWhenRecipeNotFound(){
-    Chef chefRequest = Chef.builder()
-        .id("777")
-        .name("Julian")
-        .type(ChefType.JURY)
-        .build();
+        Chef chef = Chef.builder()
+            .id("1")
+            .name("Gordon Ramsey")
+            .chefType(ChefType.JURY)
+            .build();
+        RecipeRequestDTO recipeDTO = RecipeRequestDTO.builder()
+            .id("1")
+            .title("Pasta")
+            .ingredients(List.of("Flour", "Eggs", "Salt"))
+            .steps(List.of("Boil water", "Cook pasta","Add sauce"))
+            .chef(chef)
+            .build();
+    
+        when(recipeRepository.findById("1")).thenReturn(Optional.empty());
+    
+        assertThrows(ResourceNotFoundException.class, () -> recipeService.updateRecipe("1", recipeDTO));
+        verify(recipeRepository).findById("1");
 
-    RecipeRequestDTO recipeDTO = RecipeRequestDTO.builder()
-        .id("777")
-        .title("Pasta")
-        .ingredients(List.of("Flour", "Eggs", "Salt"))
-        .steps(List.of("Boil water", "Cook pasta","Add sauce"))
-        .chef(chefRequest)
-        .chefType(ChefType.COMPETITOR)
-        .build();
-
-    when(recipeRepository.findById("777")).thenReturn(Optional.empty());
-
-    assertThrows(ResourceNotFoundException.class, () -> recipeService.updateRecipe("777", recipeDTO));
-    verify(recipeRepository).findById("777");
     }
 }

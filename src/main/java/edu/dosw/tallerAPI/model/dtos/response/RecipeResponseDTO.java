@@ -1,6 +1,6 @@
 package edu.dosw.tallerAPI.model.dtos.response;
 
-import edu.dosw.tallerAPI.model.entity.enums.ChefType;
+import edu.dosw.tallerAPI.model.entity.Chef;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,10 +30,7 @@ public class RecipeResponseDTO {
     private List<String> steps;
 
     @Schema(description = "Information about the chef who created the recipe")
-    private ChefResponseDTO chef;
-
-    @Schema(description = "Type of chef who created the recipe", example = "VIEWER")
-    private ChefType chefType;
+    private Chef chef;
 
     @Schema(description = "Season number if the chef is a participant", example = "1")
     private Integer season;

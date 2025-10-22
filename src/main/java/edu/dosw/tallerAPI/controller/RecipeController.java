@@ -27,20 +27,20 @@ public class RecipeController {
     private final RecipeService recipeService;
 
     @PostMapping("/viewer")
-    public ResponseEntity<RecipeResponseDTO> createViewerRecipe(@RequestBody RecipeRequestDTO recipeRequestDTO) {
-        RecipeResponseDTO createdRecipe = recipeService.createRecipe(recipeRequestDTO,ChefType.VIEWER);
+    public ResponseEntity<RecipeResponseDTO> createRecipeViewer(@RequestBody RecipeRequestDTO recipeRequestDTO) {
+        RecipeResponseDTO createdRecipe = recipeService.createViewerRecipe(recipeRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdRecipe);
     }
 
     @PostMapping("/jury")
-    public ResponseEntity<RecipeResponseDTO> createJuryRecipe(@RequestBody RecipeRequestDTO recipeRequestDTO) {
-        RecipeResponseDTO createdRecipe = recipeService.createRecipe(recipeRequestDTO,ChefType.JURY);
+    public ResponseEntity<RecipeResponseDTO> createRecipeCompetitor(@RequestBody RecipeRequestDTO recipeRequestDTO) {
+        RecipeResponseDTO createdRecipe = recipeService.createCompetitorRecipe(recipeRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdRecipe);
     }
 
     @PostMapping("/competitor")
-    public ResponseEntity<RecipeResponseDTO> createCompetitorRecipe(@RequestBody RecipeRequestDTO recipeRequestDTO) {
-        RecipeResponseDTO createdRecipe = recipeService.createRecipe(recipeRequestDTO,ChefType.COMPETITOR);
+    public ResponseEntity<RecipeResponseDTO> createRecipeJury(@RequestBody RecipeRequestDTO recipeRequestDTO) {
+        RecipeResponseDTO createdRecipe = recipeService.createJuryRecipe(recipeRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdRecipe);
     }
 

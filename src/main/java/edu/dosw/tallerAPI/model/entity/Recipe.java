@@ -19,7 +19,6 @@ public class Recipe {
     private List<String> ingredients;
     private List<String> steps;
     private Chef chef;
-    private ChefType chefType;
     private int season;
     
 }

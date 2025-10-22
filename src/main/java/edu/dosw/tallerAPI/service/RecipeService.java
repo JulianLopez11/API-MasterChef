@@ -9,6 +9,7 @@ import edu.dosw.tallerAPI.exception.ResourceNotFoundException;
 import edu.dosw.tallerAPI.mapper.RecipeMapper;
 import edu.dosw.tallerAPI.model.dtos.request.RecipeRequestDTO;
 import edu.dosw.tallerAPI.model.dtos.response.RecipeResponseDTO;
+import edu.dosw.tallerAPI.model.entity.Chef;
 import edu.dosw.tallerAPI.model.entity.Recipe;
 import edu.dosw.tallerAPI.model.entity.enums.ChefType;
 import edu.dosw.tallerAPI.repository.RecipeRepository;
@@ -25,16 +26,74 @@ public class RecipeService {
     private final RecipeMapper recipeMapper;
 
     /**
-     * Creates a new recipe associated with a specific 
-     * @param dto the data transfer object containing recipe details.
-     * @param chefType the type of chef creating the recipe (VIEWER, COMPETITOR, JURY).
+     * Creates a new recipe associated to a competitor chef
+     * @param dto the data transfer object containing recipe details
      * @return the created recipe as a recipe
      */
     @Transactional
-    public RecipeResponseDTO createRecipe(RecipeRequestDTO dto, ChefType chefType) {
-        Recipe recipe = recipeMapper.toEntity(dto);
-        recipe.setChefType(chefType);
-        Recipe savedRecipe = recipeRepository.save(recipe);
+    public RecipeResponseDTO createCompetitorRecipe(RecipeRequestDTO dto) {
+        Chef chef = Chef.builder()
+            .id(dto.getId())
+            .name(dto.getChef().getName())
+            .chefType(ChefType.COMPETITOR)
+            .build();
+        Recipe recipeCompetitor = Recipe.builder()
+            .id(dto.getId())
+            .title(dto.getTitle())
+            .ingredients(dto.getIngredients())
+            .steps(dto.getSteps())
+            .chef(chef)
+            .season(dto.getSeason())
+            .build();
+        Recipe savedRecipe = recipeRepository.save(recipeCompetitor);
+        return recipeMapper.toDTO(savedRecipe);
+    }
+
+     /**
+     * Creates a new recipe associated to a competitor chef
+     * @param dto the data transfer object containing recipe details
+     * @return the created recipe as a recipe
+     */
+    @Transactional
+    public RecipeResponseDTO createJuryRecipe(RecipeRequestDTO dto) {
+        Chef chef = Chef.builder()
+            .id(dto.getId())
+            .name(dto.getChef().getName())
+            .chefType(ChefType.JURY)
+            .build();
+        Recipe recipeJury = Recipe.builder()
+            .id(dto.getId())
+            .title(dto.getTitle())
+            .ingredients(dto.getIngredients())
+            .steps(dto.getSteps())
+            .chef(chef)
+            .season(dto.getSeason())
+            .build();
+        Recipe savedRecipe = recipeRepository.save(recipeJury);
+        return recipeMapper.toDTO(savedRecipe);
+    }
+
+     /**
+     * Creates a new recipe associated to a competitor chef
+     * @param dto the data transfer object containing recipe details
+     * @return the created recipe as a recipe
+     */
+    @Transactional
+    public RecipeResponseDTO createViewerRecipe(RecipeRequestDTO dto) {
+        Chef chef = Chef.builder()
+            .id(dto.getId())
+            .name(dto.getChef().getName())
+            .chefType(ChefType.VIEWER)
+            .build();
+        Recipe recipeViewer = Recipe.builder()
+            .id(dto.getId())
+            .title(dto.getTitle())
+            .ingredients(dto.getIngredients())
+            .steps(dto.getSteps())
+            .chef(chef)
+            .season(dto.getSeason())
+            .build();
+        Recipe savedRecipe = recipeRepository.save(recipeViewer);
         return recipeMapper.toDTO(savedRecipe);
     }
 
@@ -132,7 +191,6 @@ public class RecipeService {
         recipe.setIngredients(dto.getIngredients());
         recipe.setSteps(dto.getSteps());
         recipe.setChef(dto.getChef());
-        recipe.setChefType(dto.getChefType());
         recipe.setSeason(dto.getSeason());
 
         Recipe updatedRecipe = recipeRepository.save(recipe);

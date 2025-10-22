@@ -17,8 +17,11 @@ public class ChefResponseDTO {
 
     @Schema(description = "name of the chefs", example = "Gordon Ramsay")
     private String name;
+
+    @Schema(description = "type of the chef", example = "Viewer")
+    private ChefType chefType;
+
+
     
-     @Schema(description = "Type of chef who created the recipe", example = "JURY")
-    private ChefType type;
     
 }
