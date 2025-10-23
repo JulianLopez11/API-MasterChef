@@ -84,6 +84,11 @@ En caso de que sea un participante tiene que establecer en que temporada salió 
 ![alt text](docs/img/updateRecipe999.png)
 
 ![alt text](docs/img/image-16.png)
+
+## Link Azure Swagger
+
+    https://masterchef-feaxhgdabggufyb9.canadacentral-01.azurewebsites.net/swagger-ui/index.html#/
+
 ## 🚀 Instalación y Ejecución Local
 
 1. _Clonar el repositorio_
