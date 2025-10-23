@@ -1,7 +1,6 @@
 package edu.dosw.tallerAPI.model.entity;
 import java.util.List;
 
-import edu.dosw.tallerAPI.model.entity.enums.ChefType;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
 
