@@ -8,10 +8,6 @@
 
 ## 📖 Descripción del Proyecto
 
-![alt text](docs/img/descripcionProyecto.png)
----
-
-
 Un importante programa de telerrealidad de cocina va a sacar su sitio Web para que todos los televidentes puedan consultar y aprender sobre las recetas que han aparecido a lo largo de las temporadas, sin embargo, también quiere que sea interactivo, donde los televidentes pueden publicar sus recetas.
 Por tal motivo nuestra empresa DOSW Company ha sido seleccionada para desarrollar esta iniciativa en su Fase inicial, por lo tanto, usted va a construir una API de gestión de recetas de cocina.
 Cada Receta tendrá un título, una lista de ingredientes y los pasos de preparación de la receta, adicional tendrá el nombre del chef que podrá ser un concursante del programa, un chef de los jurados o un televidente del común.
@@ -26,57 +22,58 @@ En caso de que sea un participante tiene que establecer en que temporada salió 
 ### "POST" http://localhost:8080/recipe/jury
 - Request
 
-![alt text](docs/img/image.png)
+![alt text](docs/img/juryRequest.png)
 - Response
 
-![alt text](docs/img/image-1.png)
+![alt text](docs/img/juryResponse.png)
 
 ### "POST" http://localhost:8080/recipe/competitor
 -Request 
 
-![alt text](docs/img/image-2.png)
+![alt text](docs/img/competitorRequest.png)
 - Response
 
-![alt text](docs/img/image-3.png)
+![alt text](docs/img/competitorResponse.png)
 
 ### "POST" http://localhost:8080/recipe/viewer
 -Request
 
-![alt text](docs/img/image-4.png)
+![alt text](docs/img/viewerRequest.png)
 -Response 
 
-![alt text](docs/img/image-5.png)
+![alt text](docs/img/viewerResponse.png)
 
 ### "GET" http://localhost:8080/recipe/recipes
 
-![alt text](docs/img/image-6.png)
+![alt text](docs/img/getRecipes.png)
 
 ### "GET" http://localhost:8080/recipe/10
 
-![alt text](docs/img/image-7.png)
+![alt text](docs/img/getRecipe10.png)
 
 ### "GET" http://localhost:8080/recipe/competitor
 
-![alt text](docs/img/image-8.png)
+![alt text](docs/img/getCompetitors.png)
 
 ### "GET" http://localhost:8080/recipe/viewer
 
-![alt text](docs/img/image-9.png)
+![alt text](docs/img/getViewers.png)
 
 ### "GET" http://localhost:8080/recipe/jury
 
-![alt text](docs/img/image-10.png)
+![alt text](docs/img/getJurys.png)
 
 ### "GET" http://localhost:8080/recipe/season/2
 
-![alt text](docs/img/image-11.png)
+![alt text](docs/img/getSeason2.png)
 
 ### "GET" http://localhost:8080/recipe/recipe/Ketchup
 
-![alt text](docs/img/image-12.png)
+![alt text](docs/img/getKetchup.png)
+
 ### "Delete" http://localhost:8080/recipe/10
 
-![alt text](docs/img/image-13.png)
+![alt text](docs/img/deleteRecipe10.png)
 
 ### "PUT" http://localhost:8080/recipe/999
 
@@ -84,10 +81,9 @@ En caso de que sea un participante tiene que establecer en que temporada salió 
 
 ![alt text](docs/img/image-15.png)
 
-![alt text](docs/img/image-14.png)
+![alt text](docs/img/updateRecipe999.png)
 
 ![alt text](docs/img/image-16.png)
----
 ## 🚀 Instalación y Ejecución Local
 
 1. _Clonar el repositorio_
