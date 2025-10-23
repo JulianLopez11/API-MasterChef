@@ -13,7 +13,7 @@ public interface RecipeRepository extends MongoRepository<Recipe,String> {
     List<Recipe> findBySeason(int season);
     List<Recipe> findByChefId(String chefId);
     Optional<Recipe> findRecipeById(String id);
-    List<Recipe> findByChefType(ChefType type);
+    List<Recipe> findByChef_ChefType(ChefType type);
     List<Recipe> findByIngredients(String ingredient);
     
 }

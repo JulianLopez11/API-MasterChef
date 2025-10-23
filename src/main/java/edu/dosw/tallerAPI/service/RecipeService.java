@@ -33,7 +33,7 @@ public class RecipeService {
     @Transactional
     public RecipeResponseDTO createCompetitorRecipe(RecipeRequestDTO dto) {
         Chef chef = Chef.builder()
-            .id(dto.getId())
+            .id(dto.getChef().getId())
             .name(dto.getChef().getName())
             .chefType(ChefType.COMPETITOR)
             .build();
@@ -57,7 +57,7 @@ public class RecipeService {
     @Transactional
     public RecipeResponseDTO createJuryRecipe(RecipeRequestDTO dto) {
         Chef chef = Chef.builder()
-            .id(dto.getId())
+            .id(dto.getChef().getId())
             .name(dto.getChef().getName())
             .chefType(ChefType.JURY)
             .build();
@@ -81,7 +81,7 @@ public class RecipeService {
     @Transactional
     public RecipeResponseDTO createViewerRecipe(RecipeRequestDTO dto) {
         Chef chef = Chef.builder()
-            .id(dto.getId())
+            .id(dto.getChef().getId())
             .name(dto.getChef().getName())
             .chefType(ChefType.VIEWER)
             .build();
@@ -130,7 +130,7 @@ public class RecipeService {
      */
     @Transactional
     public List<RecipeResponseDTO> getRecipesByChefType(ChefType chef) {
-        return recipeRepository.findByChefType(chef)
+        return recipeRepository.findByChef_ChefType(chef)
                 .stream()
                 .map(recipeMapper::toDTO)
                 .collect(Collectors.toList());

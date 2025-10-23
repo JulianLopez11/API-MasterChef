@@ -16,7 +16,7 @@ import edu.dosw.tallerAPI.model.dtos.request.RecipeRequestDTO;
 import edu.dosw.tallerAPI.model.dtos.response.RecipeResponseDTO;
 import edu.dosw.tallerAPI.model.entity.enums.ChefType;
 import edu.dosw.tallerAPI.service.RecipeService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -32,13 +32,13 @@ public class RecipeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdRecipe);
     }
 
-    @PostMapping("/jury")
+    @PostMapping("/competitor")
     public ResponseEntity<RecipeResponseDTO> createRecipeCompetitor(@RequestBody RecipeRequestDTO recipeRequestDTO) {
         RecipeResponseDTO createdRecipe = recipeService.createCompetitorRecipe(recipeRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdRecipe);
     }
 
-    @PostMapping("/competitor")
+    @PostMapping("/jury")
     public ResponseEntity<RecipeResponseDTO> createRecipeJury(@RequestBody RecipeRequestDTO recipeRequestDTO) {
         RecipeResponseDTO createdRecipe = recipeService.createJuryRecipe(recipeRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdRecipe);

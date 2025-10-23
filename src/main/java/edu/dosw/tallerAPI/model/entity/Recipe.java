@@ -7,7 +7,7 @@ import org.springframework.data.annotation.Id;
 import lombok.Builder;
 import lombok.Data;
 
-@Document(collection = "receipes")
+@Document(collection = "recipes")
 @Data
 @Builder
 public class Recipe {
