@@ -101,7 +101,11 @@ En caso de que sea un participante tiene que establecer en que temporada salió 
 ---
 ![alt text](docs/img/azure2CiCd.png)
 
+## Mongo DB
 
+![alt text](docs/img/mongo.png)
+
+---
 ## 🚀 Instalación y Ejecución Local
 
 1. _Clonar el repositorio_
