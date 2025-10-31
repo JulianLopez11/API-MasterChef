@@ -89,6 +89,19 @@ En caso de que sea un participante tiene que establecer en que temporada salió 
 
     https://masterchef-feaxhgdabggufyb9.canadacentral-01.azurewebsites.net/swagger-ui/index.html#/
 
+## CI/CD
+- Test
+
+![alt text](image.png)
+---
+
+- Azure
+
+![alt text](image-1.png) 
+---
+![alt text](image-2.png)
+
+
 ## 🚀 Instalación y Ejecución Local
 
 1. _Clonar el repositorio_
