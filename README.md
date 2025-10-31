@@ -92,14 +92,14 @@ En caso de que sea un participante tiene que establecer en que temporada salió 
 ## CI/CD
 - Test
 
-![alt text](image.png)
+![alt text](docs/img/testcicd.png)
 ---
 
 - Azure
 
-![alt text](image-1.png) 
+![alt text](docs/img/azureCiCd.png) 
 ---
-![alt text](image-2.png)
+![alt text](docs/img/azure2CiCd.png)
 
 
 ## 🚀 Instalación y Ejecución Local
